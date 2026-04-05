@@ -16,18 +16,17 @@ internal class Program
         //Merge(new int[0], 0, new int[1] { 1 }, 1);
         //NumberToWords(12345);
         //IsMatch("aaba", ".*ba");
-        MyPow(2, 10);
+        MyPow(1.0000000001d, -2147483648);
     }
 
-    public static double MyPow(double x, int n)
+    public static double MyPow(double x, long n)
     {
         if (n == 0 || x == 1) return 1;
-
         double result = 1.00000d, number = x;
-        int power = n == int.MinValue ? Math.Abs(n+2) : Math.Abs(n);
+        long power = Math.Abs(n);
         while (power > 0)
         {
-            if (power % 2 == 1)
+            if ((power & 1) == 1)
             {
                 result *= number;
             }
