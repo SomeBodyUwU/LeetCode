@@ -19,7 +19,7 @@ internal class Program
         MyPow(1.0000000001d, -2147483648);
     }
 
-    // Dynamic programing, memoization, top-down approach, stackalloc for memory optimization
+    // Fibonacci solution, dynamic programing, memoization, top-down approach, stackalloc for memory optimization
     public int FibTopDown(int n)
     {
         if (n == 0) return 0;
