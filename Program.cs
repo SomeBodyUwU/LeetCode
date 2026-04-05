@@ -71,43 +71,6 @@ internal class Program
         return result;
     }
 
-    public static bool IsMatch(string s, string p)
-    {
-        int trueCounter = 0;
-        int i = 0;
-        char currentChar;
-        while(i <= s.Length)
-        {
-            if(i < p.Length) { currentChar = p[i]; }
-            else { break; }
-
-            if (currentChar == '.')
-            {
-                i++;
-                trueCounter++;
-                continue;
-            }
-            else if(currentChar == '*')
-            {
-                i = s.Length;
-            }
-            else
-            {
-                _ = s[i] == currentChar ? trueCounter++ : trueCounter;
-            }
-            i++;
-        }
-
-        if(trueCounter == s.Length)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
     public static string NumberToWords(int num)
     {
         var dictionary = new Dictionary<long, string>
