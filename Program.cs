@@ -19,6 +19,40 @@ internal class Program
         MyPow(1.0000000001d, -2147483648);
     }
 
+    // Dynamic programing, memoization, top-down approach, stackalloc for memory optimization
+    public int FibTopDown(int n)
+    {
+        if (n == 0) return 0;
+        Span<int> memo = stackalloc int[n + 1];
+        memo[0] = 0;
+        memo[1] = 1;
+        return RecTopDown(n, memo);
+    }
+    private int RecTopDown(int n, Span<int> memo)
+    {
+        if (n == 0) return 0;
+        if (memo[n] != 0) return memo[n];
+        memo[n] = RecTopDown(n - 1, memo) + RecTopDown(n - 2, memo);
+        return memo[n];
+    }
+    // -End of Dynamic programing top-down approach Fibonacci solution
+
+    // Fibonacci solution, dynamic programming, bottom-up approach, stackalloc for memory optimization
+    public static int FibBottomUp(int n)
+    {
+        if (n == 0) return 0;
+        Span<int> memo = stackalloc int[n + 1];
+        memo[0] = 0;
+        memo[1] = 1;
+
+        for (int i = 2; i <= n; i++)
+        {
+            memo[i] = memo[i - 1] + memo[i - 2];
+        }
+        return memo[n];
+    }
+    // -End of Dynamic programing bottom-up approach Fibonacci solution
+
     public static double MyPow(double x, long n)
     {
         if (n == 0 || x == 1) return 1;
