@@ -7,14 +7,73 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        var l1 = new ListNode(2, new ListNode(4, new ListNode(3)));
-        var l2 = new ListNode(5, new ListNode(6, new ListNode(4)));
+        //var l1 = new ListNode(2, new ListNode(4, new ListNode(3)));
+        //var l2 = new ListNode(5, new ListNode(6, new ListNode(4)));
         //var l1 = new ListNode(0);
         //var l2 = new ListNode(0);
         //var result = AddTwoNumbers(l1, l2);
-        Merge(new int[6] { 1, 2, 3, 0, 0, 0 }, 3, new int[3]{ 2, 5, 6 }, 3);
+        //Merge(new int[6] { 1, 2, 3, 0, 0, 0 }, 3, new int[3]{ 2, 5, 6 }, 3);
         //Merge(new int[0], 0, new int[1] { 1 }, 1);
-        NumberToWords(12345);
+        //NumberToWords(12345);
+        //IsMatch("aaba", ".*ba");
+        MyPow(2, 10);
+    }
+
+    public static double MyPow(double x, int n)
+    {
+        if (n == 0 || x == 1) return 1;
+
+        double result = 1.00000d, number = x;
+        int power = n == int.MinValue ? Math.Abs(n+2) : Math.Abs(n);
+        while (power > 0)
+        {
+            if (power % 2 == 1)
+            {
+                result *= number;
+            }
+            number *= number;
+            power >>= 1;
+        }
+        if (n < 0) result = 1 / result;
+
+        return result;
+    }
+
+    public static bool IsMatch(string s, string p)
+    {
+        int trueCounter = 0;
+        int i = 0;
+        char currentChar;
+        while(i <= s.Length)
+        {
+            if(i < p.Length) { currentChar = p[i]; }
+            else { break; }
+
+            if (currentChar == '.')
+            {
+                i++;
+                trueCounter++;
+                continue;
+            }
+            else if(currentChar == '*')
+            {
+                i = s.Length;
+            }
+            else
+            {
+                _ = s[i] == currentChar ? trueCounter++ : trueCounter;
+            }
+            i++;
+        }
+
+        if(trueCounter == s.Length)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public static string NumberToWords(int num)
